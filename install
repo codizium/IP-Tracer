@@ -1,21 +1,24 @@
 # Tool Name :- IP-Tracer
-# Author :- Rajkumar Dusad
-# Date :- 5/8/2018
+# Author :- Codizium
 
-if [ -e  /usr/lib/sudo ];then
+if [ -e /usr/bin/dnf ];then
+  if [ ! -e /usr/bin/php ];then
+    sudo dnf makecache
+    sudo dnf install -y php-cli || sudo dnf install -y php
+  fi
+elif [ -e  /usr/lib/sudo ];then
+
   if [ ! -e /usr/bin/php ];then
      sudo apt-get update
      sudo apt-get upgrade -y
-     sudo apt-get install php -y
-     sudo apt-get install php5 -y
+     sudo apt-get install php8.4 -y || sudo apt-get install php -y
    fi
 else
   if [ -d /usr/bin ];then
     if [ ! -e /usr/bin/php ];then
      apt-get update
-     apt -get upgrade -y
-     apt-get install php -y
-     apt-get install php5 -y
+     apt-get upgrade -y
+     apt-get install php8.4 -y || apt-get install php -y
     fi
   fi
 fi
@@ -24,7 +27,6 @@ if [ ! -d /usr/bin ];then
     pkg update
     pkg upgrade -y
     pkg install php -y
-    pkg install php5 -y
   fi
 fi
 php .setup.php

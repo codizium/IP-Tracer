@@ -8,7 +8,7 @@ class un {
       system("rm -rf /data/data/com.termux/files/usr/share/IP-Tracer");
       system("rm -rf /data/data/com.termux/files/usr/bin/ip-tracer");
       system("rm -rf /data/data/com.termux/files/usr/bin/trace");
-    } elseif ($system=="ubuntu") {
+    } elseif ($system=="ubuntu" || $system=="fedora") {
       system("sudo rm -rf /usr/bin/ip-tracer");
       system("sudo rm -rf /usr/bin/trace");
       system("sudo rm -rf /usr/share/IP-Tracer");

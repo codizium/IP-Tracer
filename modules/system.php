@@ -1,5 +1,8 @@
 <?php
-if (file_exists("/usr/bin/apt")) {
+$system;
+if (file_exists("/usr/bin/dnf")) {
+  $system="fedora";
+} elseif (file_exists("/usr/bin/apt")) {
   if (file_exists("/usr/lib/sudo")) {
     $system="ubuntu";
   } elseif (file_exists("/usr/bin/sudo")) {

@@ -1,10 +1,15 @@
 <?php
 function tracm() {
-$data = @unserialize(file_get_contents('http://ip-api.com/php/'));
+$data = @json_decode(file_get_contents('http://ip-api.com/json/'), true);
 $FCL="\033[01;33m";
 $MCL="\033[01;37m>\033[01;32m";
 $NCL="\033[00m";
-date_default_timezone_set($data['timezone']);
+if (!is_array($data)) {
+  $data = [];
+}
+if (!empty($data['timezone'])) {
+  date_default_timezone_set($data['timezone']);
+}
 system("clear");
   echo <<<EOL
 \033[01;33m
@@ -25,6 +30,7 @@ system("clear");
 EOL;
 
 if($data['status'] == 'success') {
+  echo json_encode($data, JSON_PRETTY_PRINT);
 echo "\n ".$FCL."IP Address    ".$MCL."   ".$data['query'];
 echo "\n ".$FCL."Country code  ".$MCL."   ".$data['countryCode'];
 echo "\n ".$FCL."Country       ".$MCL."   ".$data['country'];
